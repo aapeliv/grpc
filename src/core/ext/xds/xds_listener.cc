@@ -660,7 +660,7 @@ grpc_error_handle FilterChainParse(
     if (!GRPC_ERROR_IS_NONE(error)) errors.push_back(error);
   }
   filter_chain->filter_chain_data =
-      std::make_shared<XdsListenerResource::FilterChainData>();
+      std::shared_ptr<XdsApi::LdsUpdate::FilterChainData>(new XdsApi::LdsUpdate::FilterChainData());
   // Parse the filters list. Currently we only support HttpConnectionManager.
   size_t size = 0;
   auto* filters =
